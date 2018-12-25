@@ -1,0 +1,27 @@
+﻿@model ChatProject.Models.ChatModel
+
+<div>
+    @if (Model.Users.Count > 0)
+    {
+        <ul>
+            Users in chat:
+            @foreach (var modelUser in Model.Users)
+            {
+                <li>@modelUser.Name</li>
+            }
+        </ul>
+    }
+        @foreach (var msg in Model.Messages)
+        {
+            if (!string.IsNullOrEmpty(msg.UserName))
+            {
+                <p>@(msg.Created + " " + msg.UserName + " :")</p>
+                <p>@msg.Text</p>
+            }
+            else
+            {
+                <p>@("Server message: " + msg.Text)</p>
+            }
+
+        }
+</div>

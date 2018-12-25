@@ -1,0 +1,25 @@
+﻿@using System.Web.UI.WebControls
+@model ChatProject.Models.ChatModel
+<h1>ChatRoom</h1>
+<div id="Refresh">
+    @{
+        @Html.Partial("History", Model)
+    }
+</div>
+
+<div>
+    <div>
+        <textarea id="message" rows="2" cols="5"></textarea>
+    </div>
+    <div style="float: right;">
+        <button id="sendmsg">Send</button>
+        <button id ="logout">LogOut</button>
+    </div>
+</div>
+@Ajax.ActionLink("Action", "Index", new { name = "", logOn = "", logOff = "", message = "" }, new AjaxOptions
+{
+    UpdateTargetId = "Refresh",
+    OnSuccess = "OnChatSuccess",
+    OnFailure = "OnChatFailure"
+
+}, new {@id="ActionLink", @style="visibility:hidden;"})
